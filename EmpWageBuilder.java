@@ -1,7 +1,6 @@
 class EmpWageBuilder
 {
-	public static void main(String[] args)
-{
+
 	//constants
 	final	int IS_FULL_TIME = 1;
 	final int IS_PART_TIME = 2;
@@ -15,9 +14,10 @@ class EmpWageBuilder
 	int totalEmpWage = 0;
 	int totalEmpWorkingHrs = 0;
 	int totalEmpWorkingDays = 0;
-
-	//computation
-while ( totalEmpWorkingDays <= NUM_WORKING_DAYS && totalEmpWorkingHrs < MAX_WORKING_HOURS )
+	
+public void calculateEmpWage()
+{
+	while ( totalEmpWorkingDays <= NUM_WORKING_DAYS && totalEmpWorkingHrs < MAX_WORKING_HOURS )
 {	int empCheck = (int)(Math.random() * 10) % 3;
 
 	switch ( empCheck ){
@@ -39,6 +39,15 @@ while ( totalEmpWorkingDays <= NUM_WORKING_DAYS && totalEmpWorkingHrs < MAX_WORK
 
 }
 	System.out.println("Total working days: "+ totalEmpWorkingDays +" Total Working Hours: " + totalEmpWorkingHrs + " Total Wage: " + totalEmpWage );
+
+}	
+	public static void main(String[] args)
+{
+	EmpWageBuilder EmpWage = new EmpWageBuilder();
+	
+	//computation
+	EmpWage.calculateEmpWage();
+	
 }
 
 }
