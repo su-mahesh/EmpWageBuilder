@@ -1,11 +1,11 @@
 class Company
 {	
-	private int EMP_RATE_PER_HOUR = 0;
-	private int NUM_WORKING_DAYS = 0;
-	private int MAX_WORKING_HOURS = 0;
-	private String companyName = null;
+	final private int EMP_RATE_PER_HOUR;
+	final private int NUM_WORKING_DAYS;
+	final private int MAX_WORKING_HOURS;
+	final private String companyName;
 
-	Company(	String companyName, int EMP_RATE_PER_HOUR, int MAX_WORKING_HOURS, int NUM_WORKING_DAYS	)
+	public Company(	String companyName, int EMP_RATE_PER_HOUR, int MAX_WORKING_HOURS, int NUM_WORKING_DAYS	)
 	{
 	this.companyName = companyName;
 	this.EMP_RATE_PER_HOUR =	EMP_RATE_PER_HOUR;
@@ -45,18 +45,22 @@ public void calculateEmpWage(Company company)
 	int totalEmpWorkingHrs = 0;
 	int totalEmpWage = 0;	
 	int totalEmpWorkingDays = 0;
+	int workingDay = 0;
 	
-	int EMP_RATE_PER_HOUR = company.getEMP_RATE_PER_HOUR();
-	int NUM_WORKING_DAYS = company.getNUM_WORKING_DAYS();
-	int MAX_WORKING_HOURS = company.getNUM_WORKING_DAYS();
-	String companyName	=	company.getCompanyNmae();
+	final int EMP_RATE_PER_HOUR = company.getEMP_RATE_PER_HOUR();
+	final int NUM_WORKING_DAYS = company.getNUM_WORKING_DAYS();
+	final int MAX_WORKING_HOURS = company.getNUM_WORKING_DAYS();
+	final String companyName	=	company.getCompanyNmae();
+	
+	System.out.println("Company Name: "	+	companyName	);
 	
 	while ( totalEmpWorkingDays <= NUM_WORKING_DAYS && totalEmpWorkingHrs < MAX_WORKING_HOURS )
 {	int empCheck = (int)(Math.random() * 10) % 3;
+	workingDay++;
 
 	switch ( empCheck ){
 		case IS_FULL_TIME:
-			empHrs=8;
+			empHrs = 8;
 			totalEmpWorkingDays++;
 			break;
 		case IS_PART_TIME:
@@ -64,15 +68,15 @@ public void calculateEmpWage(Company company)
 			totalEmpWorkingDays++;
 			break;
 		default:
-			empHrs=0;
+			empHrs = 0;
 }
 	totalEmpWorkingHrs += empHrs;
 	empWage = empHrs * EMP_RATE_PER_HOUR;
 	totalEmpWage += empWage;
-	System.out.println("Emp wage: " + empWage );
+	System.out.println("Day: "+workingDay+" Emp wage: " + empWage );
 
-}	System.out.println("Company Name: "	+	companyName	);
-	System.out.println("Total working days: "+ totalEmpWorkingDays +" Total Working Hours: " + totalEmpWorkingHrs + " Total Wage: " + totalEmpWage +"\n");
+}	
+	System.out.println("\nTotal working days: "+ totalEmpWorkingDays +" Total Working Hours: " + totalEmpWorkingHrs + " Total Wage: " + totalEmpWage +"\n");
 }	
 
 	public static void main(String[] args)
@@ -84,11 +88,11 @@ public void calculateEmpWage(Company company)
 	Company TATA = new Company("TATA", 22, 30, 120);
 	
 	//computation
-	EmpWage.calculateEmpWage(	BMW	);
+	EmpWage.calculateEmpWage(BMW);
 	
-	EmpWage.calculateEmpWage(	Maruti	);
+	EmpWage.calculateEmpWage(Maruti);
 
-	EmpWage.calculateEmpWage(	TATA	);	
+	EmpWage.calculateEmpWage(TATA);	
 }
 
 }
