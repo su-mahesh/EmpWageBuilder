@@ -5,8 +5,6 @@ class Company
 	private int MAX_WORKING_HOURS = 0;
 	private String companyName = null;
 
-
-	
 	Company(	String companyName, int EMP_RATE_PER_HOUR, int MAX_WORKING_HOURS, int NUM_WORKING_DAYS	)
 	{
 //	System.out.println("c " + companyName );
@@ -41,8 +39,6 @@ class EmpWageBuilder
 	//constants
 	final	int IS_FULL_TIME = 1;
 	final int IS_PART_TIME = 2;
-
-
 
 public void calculateEmpWage(Company company)
 {
