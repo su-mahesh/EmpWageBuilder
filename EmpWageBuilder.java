@@ -84,9 +84,9 @@ public void calculateEmpWage(Company company)
 	EmpWageBuilder EmpWage = new EmpWageBuilder();
 	
 	
-	Company BMW = new Company("BMW",20,20,100);
-	Company Maruti = new Company("Maruti",10,15,80);
-	Company TATA = new Company("TATA",22,30,120);
+	Company BMW = new Company("BMW", 20, 20, 100);
+	Company Maruti = new Company("Maruti", 10, 15, 80);
+	Company TATA = new Company("TATA", 22, 30, 120);
 	//computation
 	EmpWage.calculateEmpWage(	BMW	);
 	
