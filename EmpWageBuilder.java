@@ -7,7 +7,6 @@ class Company
 
 	Company(	String companyName, int EMP_RATE_PER_HOUR, int MAX_WORKING_HOURS, int NUM_WORKING_DAYS	)
 	{
-//	System.out.println("c " + companyName );
 	this.companyName = companyName;
 	this.EMP_RATE_PER_HOUR =	EMP_RATE_PER_HOUR;
 	this.NUM_WORKING_DAYS = NUM_WORKING_DAYS;
@@ -29,13 +28,11 @@ class Company
 	int getMAX_WORKING_HOURS()
 	{
 	return MAX_WORKING_HOURS;
-	}
-	
+	}	
 }
 
 class EmpWageBuilder
 {
-
 	//constants
 	final	int IS_FULL_TIME = 1;
 	final int IS_PART_TIME = 2;
@@ -49,7 +46,6 @@ public void calculateEmpWage(Company company)
 	int totalEmpWage = 0;	
 	int totalEmpWorkingDays = 0;
 	
-
 	int EMP_RATE_PER_HOUR = company.getEMP_RATE_PER_HOUR();
 	int NUM_WORKING_DAYS = company.getNUM_WORKING_DAYS();
 	int MAX_WORKING_HOURS = company.getNUM_WORKING_DAYS();
@@ -83,18 +79,16 @@ public void calculateEmpWage(Company company)
 {
 	EmpWageBuilder EmpWage = new EmpWageBuilder();
 	
-	
 	Company BMW = new Company("BMW", 20, 20, 100);
 	Company Maruti = new Company("Maruti", 10, 15, 80);
 	Company TATA = new Company("TATA", 22, 30, 120);
+	
 	//computation
 	EmpWage.calculateEmpWage(	BMW	);
 	
 	EmpWage.calculateEmpWage(	Maruti	);
 
-	EmpWage.calculateEmpWage(	TATA	);
-	
-	
+	EmpWage.calculateEmpWage(	TATA	);	
 }
 
 }
