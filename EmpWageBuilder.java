@@ -2,6 +2,7 @@ import java.util.*;
 
 class Company
 {	
+	//constants
 	final private int EMP_RATE_PER_HOUR;
 	final private int MAX_WORKING_DAYS;
 	final private int MAX_WORKING_HOURS;
