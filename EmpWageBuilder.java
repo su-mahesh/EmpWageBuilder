@@ -53,8 +53,12 @@ class Employee{
 	return wage;
 	}	
 }
+//
+interface IempWageBuilder{
 
-class EmpWageBuilder
+void calculateEmpWage ();
+}
+class EmpWageBuilder implements IempWageBuilder
 {
 	//constants
 	final	int IS_FULL_TIME = 1;
