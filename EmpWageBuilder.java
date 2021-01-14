@@ -30,27 +30,43 @@ class Company
 }
 
 class Employee{
+	//constants
 	private final String EmployeeName;
-	private int wage = 0;
+	//variables
+	private ArrayList<Integer> dailyWage = new ArrayList<Integer>();
+	private int totalWage = 0;
 	
 	Employee(String EmployeeName )
 	{
 	this.EmployeeName = EmployeeName;
 	}
 	
+	//fucntions
 	String getEmpName()
 	{
 	return EmployeeName;
 	}
 	
-	void setWage(int wage)
+	void setTotalWage(int totalWage)
 	{
-	this.wage = wage;
+	this.totalWage = totalWage;
 	}
 	
-	int getWage()
+	void setDailyWage(int dailyWage){
+	this.dailyWage.add(dailyWage);
+	}
+	void getDailyWage(){
+	int i = 1;
+	for (Integer daily_Wage : dailyWage){
+	System.out.println("Day "+i+"		wage: "+daily_Wage);
+	i++;
+	}
+	System.out.println("\ntotal wage: "+totalWage);
+	}
+	void getTotalWage()
 	{
-	return wage;
+	System.out.println("\ntotal wage: "+totalWage);
+
 	}	
 }
 
@@ -85,8 +101,7 @@ class EmpWageBuilder
 		int MAX_WORKING_DAYS = Integer.parseInt(sc.nextLine());
 		
 		companyList.add(new Company(companyName, EMP_RATE_PER_HOUR, MAX_WORKING_HOURS, MAX_WORKING_DAYS));
-		
-		
+			
 	}catch(Exception e)
 	{
 		System.out.println("wrong input");
@@ -98,6 +113,34 @@ class EmpWageBuilder
 		System.out.println("Enter empolyee name: ");
 		String empName = sc.nextLine();
 		empList.add(new Employee(empName));
+	}
+	//get daily wage
+	void getDailyWage()
+	{
+	int empIndex = 0;
+	System.out.println("Enter employee name: ");
+	String empName = sc.nextLine();
+	try{
+	while(!empList.get(empIndex).getEmpName().equalsIgnoreCase(empName))
+		empIndex++;
+		empList.get(empIndex).getDailyWage();
+		}catch(Exception e)
+	{System.out.println("Data not found");
+	}
+	}
+	
+	void getTotalWage(){
+	int empIndex = 0;
+	System.out.println("Enter employee name: ");
+	String empName = sc.nextLine();
+	try{
+	while(!empList.get(empIndex).getEmpName().equalsIgnoreCase(empName))
+		empIndex++;
+		empList.get(empIndex).getTotalWage();
+	
+	}catch(Exception e)
+	{System.out.println("Data not found");
+	}
 	}
 	
 	//calculate wage
@@ -111,7 +154,6 @@ class EmpWageBuilder
 		int totalEmpWorkingDays = 0;
 		int workingDay = 0;
 		int companyIndex = 0;
-		int i = 0;
 		
 		System.out.println("Enter company name: ");
 		String companyName = sc.nextLine();
@@ -157,11 +199,12 @@ class EmpWageBuilder
 			
 			totalEmpWorkingHrs += empHrs;			
 			empWage = empHrs * EMP_RATE_PER_HOUR;
+			empList.get(empIndex).setDailyWage(empWage);
 			totalEmpWage += empWage;
 			System.out.println("Day: "+workingDay+" Emp wage: " + empWage );			
 		}	
 		
-		empList.get(empIndex).setWage(totalEmpWage);
+		empList.get(empIndex).setTotalWage(totalEmpWage);
 		System.out.println("\nCompany Name: "+ companyName +"  Employee name: "+ empList.get(empIndex).getEmpName() +"  Total working days: "+ totalEmpWorkingDays  );
 		System.out.println("Total Working Hours: " + totalEmpWorkingHrs +"  Total Wage: " + totalEmpWage +"\n");
 
@@ -177,11 +220,12 @@ class EmpWageBuilder
 		
 		Scanner sc = new Scanner(System.in);
 
-		while(choice != 4){
+		while(choice != 6){
 		
 			System.out.println("\n*******Employee wage builder*******");
-			System.out.println("1. add company 2. add employee");
-			System.out.println("3. Calcualte wage 4. exit");
+			System.out.println("1. add company 	  2. add employee");
+			System.out.println("3. Calcualte wage 4. get daily wage ");
+			System.out.println("5. get total wage 6. exit");
 
 			try{
 				choice = Integer.parseInt(sc.nextLine());
@@ -189,7 +233,7 @@ class EmpWageBuilder
 				System.out.println("wrong input");
 				break;
 				}
-							
+
 			switch(choice){
 				case 1:
 					empWageBuilder.addCompany();
@@ -201,7 +245,13 @@ class EmpWageBuilder
 					empWageBuilder.calculateEmpWage();
 					break;
 				case 4:
-					break;	
+					empWageBuilder.getDailyWage();
+					break;		
+				case 5:
+					empWageBuilder.getTotalWage();
+					break;
+				case 6:
+					break;		
 				default:
 					System.out.println("wrong choice");	
 			}
