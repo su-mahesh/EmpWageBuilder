@@ -66,15 +66,8 @@ class EmpWageBuilder
 
 	//objects
 	Scanner sc = new Scanner(System.in);
-	private Company companyWageArray[];
-	private Employee employeeArray[];
-//	ArrayList<Company> companyList=new ArrayList<Company>();
-	
-	EmpWageBuilder(int arraySize){
-	companyWageArray = new Company[arraySize];
-	employeeArray = new Employee[arraySize];
-
-	}
+	ArrayList<Company> companyList=new ArrayList<Company>();
+	ArrayList<Employee> empList=new ArrayList<Employee>();
 	
 	//add company
 	public void addCompany(){
@@ -83,16 +76,17 @@ class EmpWageBuilder
 		String companyName = sc.nextLine();
 		
 		System.out.println("Enter emp wage rate per hour: ");
-		int EMP_RATE_PER_HOUR = sc.nextInt();
+		int EMP_RATE_PER_HOUR = Integer.parseInt(sc.nextLine());
 		
 		System.out.println("Enter max working hours: ");
-		int MAX_WORKING_HOURS = sc.nextInt();
+		int MAX_WORKING_HOURS = Integer.parseInt(sc.nextLine());
 		
 		System.out.println("Enter max working days: ");
-		int MAX_WORKING_DAYS = sc.nextInt();
+		int MAX_WORKING_DAYS = Integer.parseInt(sc.nextLine());
 		
-		companyWageArray[companyNo] = new Company(companyName, EMP_RATE_PER_HOUR, MAX_WORKING_HOURS, MAX_WORKING_DAYS);
-		companyNo++;
+		companyList.add(new Company(companyName, EMP_RATE_PER_HOUR, MAX_WORKING_HOURS, MAX_WORKING_DAYS));
+		
+		
 	}catch(Exception e)
 	{
 		System.out.println("wrong input");
@@ -101,9 +95,9 @@ class EmpWageBuilder
 	
 	//add employee
 	void addEmployee(){
+		System.out.println("Enter empolyee name: ");
 		String empName = sc.nextLine();
-		employeeArray[empNo] = new Employee(empName);
-		empNo++;
+		empList.add(new Employee(empName));
 	}
 	
 	//calculate wage
@@ -126,17 +120,17 @@ class EmpWageBuilder
 		String empName = sc.nextLine();
 		
 		try{
-		while(!employeeArray[empIndex].getEmpName().equalsIgnoreCase(empName)){
+		while(!empList.get(empIndex).getEmpName().equalsIgnoreCase(empName)){
 		empIndex++;
 		}
 		
-		while(!companyWageArray[companyIndex].getCompanyName().equalsIgnoreCase(companyName)){
+		while(!companyList.get(companyIndex).getCompanyName().equalsIgnoreCase(companyName)){
 		companyIndex++;
 		}	
-		final int EMP_RATE_PER_HOUR = companyWageArray[companyIndex].getEMP_RATE_PER_HOUR();
-		final int MAX_WORKING_DAYS = companyWageArray[companyIndex].getMAX_WORKING_DAYS();
-		final int MAX_WORKING_HOURS = companyWageArray[companyIndex].getMAX_WORKING_HOURS();
-		companyName	=	companyWageArray[companyIndex].getCompanyName();
+		final int EMP_RATE_PER_HOUR = companyList.get(companyIndex).getEMP_RATE_PER_HOUR();
+		final int MAX_WORKING_DAYS = companyList.get(companyIndex).getMAX_WORKING_DAYS();
+		final int MAX_WORKING_HOURS = companyList.get(companyIndex).getMAX_WORKING_HOURS();
+		companyName	=	companyList.get(companyIndex).getCompanyName();
 
 		System.out.println("Company Name: "	+	companyName	);
 
@@ -167,8 +161,8 @@ class EmpWageBuilder
 			System.out.println("Day: "+workingDay+" Emp wage: " + empWage );			
 		}	
 		
-		employeeArray[empIndex].setWage(totalEmpWage);
-		System.out.println("\nCompany Name: "+ companyName +"  Employee name: "+ employeeArray[empIndex].getEmpName() +"  Total working days: "+ totalEmpWorkingDays  );
+		empList.get(empIndex).setWage(totalEmpWage);
+		System.out.println("\nCompany Name: "+ companyName +"  Employee name: "+ empList.get(empIndex).getEmpName() +"  Total working days: "+ totalEmpWorkingDays  );
 		System.out.println("Total Working Hours: " + totalEmpWorkingHrs +"  Total Wage: " + totalEmpWage +"\n");
 
 		}catch(Exception e){
@@ -177,7 +171,8 @@ class EmpWageBuilder
 	}	
 
 	public static void main(String[] args){
-		EmpWageBuilder empWageBuilder = new EmpWageBuilder(5);
+	
+		EmpWageBuilder empWageBuilder = new EmpWageBuilder();
 		int choice = 0;
 		
 		Scanner sc = new Scanner(System.in);
@@ -189,7 +184,7 @@ class EmpWageBuilder
 			System.out.println("3. Calcualte wage 4. exit");
 
 			try{
-				choice = sc.nextInt();
+				choice = Integer.parseInt(sc.nextLine());
 				}catch(Exception e){
 				System.out.println("wrong input");
 				break;
