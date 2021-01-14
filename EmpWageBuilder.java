@@ -70,7 +70,12 @@ class Employee{
 	}	
 }
 
-class EmpWageBuilder
+//interface
+interface IempWageBuilder{
+
+void calculateEmpWage ();
+}
+class EmpWageBuilder implements IempWageBuilder
 {
 	//constants
 	final	int IS_FULL_TIME = 1;
